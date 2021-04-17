@@ -21,16 +21,20 @@ class Language {
 
   /// func get value of json with nest string key
   String getText(String key) {
-    List<String> listKey = key.split(".");
-    if (listKey.length == 1) {
-      return language[key] ?? key;
+    try {
+      List<String> listKey = key.split(".");
+      if (listKey.length == 1) {
+        return language[key] ?? key;
+      }
+      dynamic valueNest;
+      for (int i = 0; i < listKey.length - 1; i++) {
+        valueNest = language[listKey[i]];
+      }
+      String keyResult = listKey[listKey.length - 1];
+      return valueNest[keyResult] ?? key;
+    } catch (e){
+      return key ?? "";
     }
-    dynamic valueNest;
-    for (int i = 0; i < listKey.length - 1; i++) {
-      valueNest = language[listKey[i]];
-    }
-    String keyResult = listKey[listKey.length - 1];
-    return valueNest[keyResult] ?? key;
   }
 
   String get currentLanguage => _locale.languageCode;
