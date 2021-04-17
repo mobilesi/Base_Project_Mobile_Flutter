@@ -1,6 +1,8 @@
 import 'package:intl/intl.dart';
 import 'dart:math' as Math;
 
+import 'package:share/share.dart';
+
 class Common {
   static DateTime parserDate(String date, String format) {
     try {
@@ -97,5 +99,9 @@ class Common {
   static String datetimeToSting(DateTime date) {
     var formatter = new DateFormat('dd/MM/yyyy');
     return formatter.format(date);
+  }
+
+  static shareContent(String content) {
+    Share.share(content);
   }
 }

@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       localeResolutionCallback: (locale, supportedLocales) =>
           _localeCallback(locale, supportedLocales),
       initialRoute: Routes.initScreen(),
-      routes: Routes.routes,
+      onGenerateRoute: Routes.generateRoute,
     );
   }
 

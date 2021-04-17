@@ -35,6 +35,9 @@ dependencies:
   equatable: ^1.2.5
   intl: ^0.16.1
   pull_to_refresh: ^1.5.8
+  page_transition: ^1.1.7+6
+  in_app_review: ^1.0.4
+  share: ^0.6.5+4
 
 dev_dependencies:
   flutter_test:
