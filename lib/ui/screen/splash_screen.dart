@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/res/resources.dart';
 import 'package:flutter_template/routes.dart';
+import 'package:flutter_template/utils/flutter_screenutil/screen_util.dart';
 import 'package:flutter_template/utils/shared_preference.dart';
 
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
     WidgetsBinding.instance.addPostFrameCallback((_) => openScreen(context));
     return Scaffold(
       body: Container(

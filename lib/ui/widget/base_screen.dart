@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/res/colors.dart';
 import 'package:flutter_template/res/resources.dart';
+import 'package:flutter_template/utils/flutter_screenutil/flutter_screenutil.dart';
 
 import 'custom_text_label.dart';
 
@@ -106,7 +107,7 @@ class BaseScreen extends StatelessWidget {
               ]
             : null,
       ),
-      padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top),
+      padding: EdgeInsets.only(top: ScreenUtil.statusBarHeight),
       child: Row(
         children: [
           hiddenBtnBack
