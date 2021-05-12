@@ -11,4 +11,5 @@ class AppColors {
   static const Color green = Color(0xFF25A641);
   static const Color orange = Color(0xFFF35B46);
   static const Color yellow = Color(0xFFD7DB26);
+  static const Color tacha = Color(0xA06E6E6E);
 }
