@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/blocs/base_bloc/base.dart';
+import 'package:flutter_template/ui/widget/base_progress_indicator.dart';
 
 class CustomLoading<T extends Cubit<BaseState>> extends StatelessWidget {
   @override
@@ -15,11 +16,7 @@ class CustomLoading<T extends Cubit<BaseState>> extends StatelessWidget {
                 color: Colors.black12,
               ),
               child: Center(
-                child: CircularProgressIndicator(
-                  strokeWidth: 3,
-                  backgroundColor: Colors.lightBlueAccent,
-                  valueColor: new AlwaysStoppedAnimation<Color>(Colors.blue),
-                ),
+                child: BaseProgressIndicator(),
               ),
             ),
           );

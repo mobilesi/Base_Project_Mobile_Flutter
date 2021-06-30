@@ -32,7 +32,7 @@ class Language {
       }
       String keyResult = listKey[listKey.length - 1];
       return valueNest[keyResult] ?? key;
-    } catch (e){
+    } catch (e) {
       return key ?? "";
     }
   }
@@ -44,16 +44,13 @@ class LanguageDelegate extends LocalizationsDelegate<Language> {
   const LanguageDelegate();
 
   @override
-  bool isSupported(Locale locale) =>
-      [Constants.VI, Constants.EN].contains(locale.languageCode);
+  bool isSupported(Locale locale) => [Constants.VI, Constants.EN].contains(locale.languageCode);
 
   @override
   Future<Language> load(Locale locale) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setString(
-        SPrefCache.PREF_KEY_LANGUAGE, locale.languageCode);
-    String string = await rootBundle
-        .loadString("assets/strings/${locale.languageCode}.json");
+    await preferences.setString(SPrefCache.PREF_KEY_LANGUAGE, locale.languageCode);
+    String string = await rootBundle.loadString("assets/strings/${locale.languageCode}.json");
     language = json.decode(string);
     return SynchronousFuture<Language>(Language(locale));
   }

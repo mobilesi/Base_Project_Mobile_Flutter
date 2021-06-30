@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/utils/flutter_screenutil/flutter_screenutil.dart';
@@ -107,18 +106,18 @@ class TextFieldState extends State<CustomTextInput> {
                   disabledBorder: widget.hideUnderline
                       ? InputBorder.none
                       : UnderlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.base_color_border_textfield, width: 1),
-                  ),
+                          borderSide: BorderSide(color: AppColors.base_color_border_textfield, width: 1),
+                        ),
                   focusedBorder: widget.hideUnderline
                       ? InputBorder.none
                       : UnderlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.tacha, width: 1),
-                  ),
+                          borderSide: BorderSide(color: AppColors.tacha, width: 1),
+                        ),
                   enabledBorder: widget.hideUnderline
                       ? InputBorder.none
                       : UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey, width: 1),
-                  ),
+                          borderSide: BorderSide(color: Colors.grey, width: 1),
+                        ),
                   hintStyle: TextStyle(color: Colors.grey),
                   hintText: Language.of(context).getText(widget.hintText),
                   isDense: true,
@@ -130,20 +129,20 @@ class TextFieldState extends State<CustomTextInput> {
                   ),
                   suffixIcon: widget.isPassword
                       ? IconButton(
-                    padding: EdgeInsets.all(4.h),
-                    icon: Icon(
-                      // Based on passwordVisible state choose the icon
-                      _passwordVisible ? Icons.visibility_off : Icons.visibility,
-                      color: AppColors.tacha,
-                      size: 16.w,
-                    ),
-                    onPressed: () {
-                      // Update the state i.e. toogle the state of passwordVisible variable
-                      setState(() {
-                        _passwordVisible = !_passwordVisible;
-                      });
-                    },
-                  )
+                          padding: EdgeInsets.all(4.h),
+                          icon: Icon(
+                            // Based on passwordVisible state choose the icon
+                            _passwordVisible ? Icons.visibility_off : Icons.visibility,
+                            color: AppColors.tacha,
+                            size: 16.w,
+                          ),
+                          onPressed: () {
+                            // Update the state i.e. toogle the state of passwordVisible variable
+                            setState(() {
+                              _passwordVisible = !_passwordVisible;
+                            });
+                          },
+                        )
                       : Container()),
               controller: widget.textController,
               obscureText: widget.isPassword ? !_passwordVisible : false,
@@ -167,25 +166,25 @@ class TextFieldState extends State<CustomTextInput> {
           ),
           widget.errorText != ""
               ? Container(
-            margin: EdgeInsets.only(top: AppDimens.SIZE_6),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(
-                  Icons.error,
-                  size: AppDimens.SIZE_13,
-                  color: Colors.red,
-                ),
-                SizedBox(width: 2),
-                Expanded(
-                  child: Text(
-                    Language.of(context).getText(widget.errorText),
-                    style: TextStyle(color: Colors.red, fontSize: AppDimens.SIZE_12),
+                  margin: EdgeInsets.only(top: AppDimens.SIZE_6),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(
+                        Icons.error,
+                        size: AppDimens.SIZE_13,
+                        color: Colors.red,
+                      ),
+                      SizedBox(width: 2),
+                      Expanded(
+                        child: Text(
+                          Language.of(context).getText(widget.errorText),
+                          style: TextStyle(color: Colors.red, fontSize: AppDimens.SIZE_12),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-          )
+                )
               : Container()
         ],
       ),

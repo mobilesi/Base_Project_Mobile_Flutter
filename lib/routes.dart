@@ -19,6 +19,7 @@ class Routes {
     splashScreen: (context) => SplashScreen(),
     mainScreen: (context) => MainScreen(),
   };
+
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case mainScreen:
@@ -29,5 +30,4 @@ class Routes {
         return MaterialPageRoute(builder: (context) => Container());
     }
   }
-
 }

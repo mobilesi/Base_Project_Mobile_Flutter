@@ -12,4 +12,3 @@ class FormatDate {
   static final String dayMonthYear = "dd/MM/yyyy";
   static final String hhMMss = "HH:mm ss";
 }
-

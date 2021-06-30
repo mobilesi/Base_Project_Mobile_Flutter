@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/blocs/language_cubit.dart';
 import 'package:flutter_template/localizations.dart';
 
-
 class LocaleWidget extends StatelessWidget {
   final builder;
 

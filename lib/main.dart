@@ -12,10 +12,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences preferences = await SharedPreferences.getInstance();
   String language = preferences.getString(SPrefCache.PREF_KEY_LANGUAGE);
-  if (Platform.isAndroid) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent, statusBarIconBrightness: Brightness.dark));
-  }
   runApp(MultiBlocProvider(providers: [
     BlocProvider(
       create: (_) => LanguageCubit(),

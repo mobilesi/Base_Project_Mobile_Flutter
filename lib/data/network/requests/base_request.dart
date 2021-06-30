@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-
 class BaseParamRequest {
   static Map<String, dynamic> request(map) {
     if (map == null) {

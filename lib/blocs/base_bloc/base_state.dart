@@ -17,8 +17,7 @@ class LoadedState<T> extends BaseState {
   final timeEmit;
   final bool isLocalizeMessage;
 
-  LoadedState(this.data,
-      {this.msgError = "", this.timeEmit, this.isLocalizeMessage = true});
+  LoadedState(this.data, {this.msgError = "", this.timeEmit, this.isLocalizeMessage = true});
 
   @override
   List<Object> get props => [data, msgError, timeEmit];
@@ -42,20 +41,14 @@ class BaseStateRequest<T> {
 
   BaseStateRequest.init({this.messageError, this.isLoading, this.data});
 
-  BaseStateRequest.onLoading(
-      {this.data,
-      this.isSuccess = false,
-      this.isLoading = true,
-      this.messageError = ""});
+  BaseStateRequest.onLoading({this.data, this.isSuccess = false, this.isLoading = true, this.messageError = ""});
 
-  BaseStateRequest.onError(this.messageError,
-      {this.data, this.isLoading = false, this.isSuccess = false});
+  BaseStateRequest.onError(this.messageError, {this.data, this.isLoading = false, this.isSuccess = false});
 
-  BaseStateRequest.onSuccess(this.data,
-      {this.isLoading = false, this.messageError = "", this.isSuccess = true});
+  BaseStateRequest.onSuccess(this.data, {this.isLoading = false, this.messageError = "", this.isSuccess = true});
 }
 
-class DataStateRequest{
+class DataStateRequest {
   BaseStateRequest stateRequest;
 
   DataStateRequest({this.stateRequest});
