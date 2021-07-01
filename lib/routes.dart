@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/ui/screen/auth/login_screen.dart';
 import 'package:flutter_template/ui/screen/main_screen.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -26,6 +27,8 @@ class Routes {
         return PageTransition(child: MainScreen(), type: PageTransitionType.fade);
       case splashScreen:
         return PageTransition(child: SplashScreen(), type: PageTransitionType.fade);
+      case loginScreen:
+        return PageTransition(child: LoginScreen(), type: PageTransitionType.fade);
       default:
         return MaterialPageRoute(builder: (context) => Container());
     }

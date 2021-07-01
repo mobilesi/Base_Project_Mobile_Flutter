@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_template/res/resources.dart';
 import 'package:flutter_template/routes.dart';
 import 'package:flutter_template/utils/flutter_screenutil/screen_util.dart';
 import 'package:flutter_template/utils/shared_preference.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   @override
+  State<StatefulWidget> createState() {
+    return _SplashState();
+  }
+}
+
+class _SplashState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((_) => openScreen(context));
+  }
+
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
-    WidgetsBinding.instance.addPostFrameCallback((_) => openScreen(context));
     return Scaffold(
       body: Container(
         color: AppColors.base_color,
@@ -32,7 +44,7 @@ class SplashScreen extends StatelessWidget {
     String token = await SharedPreferenceUtil.getToken();
     await Future.delayed(Duration(seconds: 2));
     if (token.isEmpty) {
-      Navigator.pushReplacementNamed(context, Routes.mainScreen);
+      Navigator.pushReplacementNamed(context, Routes.loginScreen);
     } else {
       Navigator.pushReplacementNamed(context, Routes.mainScreen);
     }
