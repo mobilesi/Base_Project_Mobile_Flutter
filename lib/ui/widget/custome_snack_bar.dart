@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/blocs/base_bloc/base.dart';
 import 'package:flutter_template/localizations.dart';
 import 'package:flutter_template/res/colors.dart';
 import 'package:flutter_template/ui/widget/custom_text_label.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/utils/flutter_screenutil/flutter_screenutil.dart';
+import 'package:scale_size/scale_size.dart';
 
 class CustomSnackBar<T extends Cubit<BaseState>> extends StatelessWidget {
   final double fontSize;
@@ -30,12 +30,12 @@ class CustomSnackBar<T extends Cubit<BaseState>> extends StatelessWidget {
             Scaffold.of(context).showSnackBar(SnackBar(
               content: CustomTextLabel(
                 isLocalizeMessage ? Language.of(context).getText(mess) : mess,
-                fontSize: fontSize ?? 14.nsp,
+                fontSize: fontSize ?? 14.sw,
                 color: textColor ?? AppColors.white,
                 fontWeight: FontWeight.w600,
               ),
               behavior: SnackBarBehavior.floating,
-              margin: EdgeInsets.all(20.w),
+              margin: EdgeInsets.all(20.sw),
               backgroundColor: AppColors.white,
               duration: Duration(milliseconds: 1400),
             ));

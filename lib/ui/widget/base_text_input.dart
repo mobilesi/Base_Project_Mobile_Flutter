@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/localizations.dart';
 import 'package:flutter_template/res/resources.dart';
+import 'package:flutter_template/ui/widget/custom_text_label.dart';
+import 'package:scale_size/scale_size.dart';
 
 class CustomTextInput extends StatefulWidget {
   final onSubmitted;
@@ -88,6 +90,15 @@ class TextFieldState extends State<CustomTextInput> {
       child: Wrap(
         children: [
           Container(
+            padding: EdgeInsets.only(bottom: 5.sw),
+            child: CustomTextLabel(
+              widget.title ?? "",
+              color: AppColors.ff828282,
+              fontSize: 14.sw,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          Container(
             alignment: Alignment.center,
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(AppDimens.SIZE_5)),
             child: TextField(
@@ -95,10 +106,8 @@ class TextFieldState extends State<CustomTextInput> {
               cursorColor: Colors.black,
               enabled: widget.enabled,
               textAlign: widget.align ?? TextAlign.start,
-              style: TextStyle(
-                  color: widget.colorText,
-                  fontSize: AppDimens.SIZE_14,
-                  fontWeight: widget.fontWeight ?? FontWeight.normal),
+              style:
+                  TextStyle(color: widget.colorText, fontSize: 14.sw, fontWeight: widget.fontWeight ?? FontWeight.w400),
               decoration: InputDecoration(
                   counterText: "",
                   focusColor: Colors.white,
@@ -124,11 +133,12 @@ class TextFieldState extends State<CustomTextInput> {
                       : UnderlineInputBorder(
                           borderSide: BorderSide(color: AppColors.base_color_border_textfield, width: 1),
                         ),
-                  hintStyle: TextStyle(color: Colors.grey),
+                  hintStyle: TextStyle(color: AppColors.ffBDBDBD, fontWeight: FontWeight.w400, fontSize: 14.sw),
                   hintText: Language.of(context).getText(widget.hintText),
                   isDense: true,
                   // and add this line
-                  contentPadding: widget.padding ?? EdgeInsets.only(left: 0, top: 10, right: 0, bottom: 10)),
+                  contentPadding: widget.padding ??
+                      EdgeInsets.symmetric(horizontal: widget.hideUnderline == false ? 0 : 10.sw, vertical: 10.sw)),
               controller: widget.textController,
               obscureText: widget.obscureText,
               keyboardType: widget.keyboardType,
@@ -162,9 +172,10 @@ class TextFieldState extends State<CustomTextInput> {
                       ),
                       SizedBox(width: 2),
                       Expanded(
-                        child: Text(
-                          Language.of(context).getText(widget.errorText),
-                          style: TextStyle(color: Colors.red, fontSize: AppDimens.SIZE_12),
+                        child: CustomTextLabel(
+                          widget.errorText,
+                          color: Colors.red,
+                          fontSize: 12.sw,
                         ),
                       ),
                     ],

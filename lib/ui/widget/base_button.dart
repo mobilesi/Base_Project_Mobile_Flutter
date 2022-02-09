@@ -1,43 +1,84 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/res/resources.dart';
 import 'package:flutter_template/ui/widget/custom_text_label.dart';
-import '../../res/dimens.dart';
-import '../../res/resources.dart';
+import 'package:scale_size/scale_size.dart';
 
-class CustomButton extends StatelessWidget {
-  final double width;
+class BaseButton extends StatelessWidget {
   final String title;
-  final Color colorBackground;
-  final Function onPress;
-  final EdgeInsets margin;
+  final BoxDecoration decoration;
+  final GestureTapCallback onTap;
+  final Widget child;
+  final Color backgroundColor;
+  final double borderRadius;
+  final Color borderColor;
+  final EdgeInsetsGeometry margin;
+  final EdgeInsetsGeometry padding;
+  final AlignmentGeometry alignment;
+  final double width;
+  final double height;
 
-  const CustomButton(this.title, this.onPress, {Key key, this.width, this.colorBackground, this.margin})
+  const BaseButton(
+      {this.child,
+      Key key,
+      this.decoration,
+      this.onTap,
+      this.backgroundColor,
+      this.borderRadius,
+      this.borderColor = Colors.transparent,
+      this.margin,
+      this.padding,
+      this.alignment,
+      this.width,
+      this.height,
+      this.title})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        if (onPress != null) {
-          onPress();
-        }
-      },
-      child: Container(
-        height: AppDimens.SIZE_50,
-        margin: margin ?? EdgeInsets.zero,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: colorBackground ?? AppColors.base_color,
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(AppDimens.SIZE_4), bottomRight: Radius.circular(AppDimens.SIZE_4)),
+    var borderRadiusInWell = BorderRadius.circular(0);
+    if (this.decoration != null) {
+      borderRadiusInWell = this.decoration.borderRadius;
+    }
+    if (this.borderRadius != null) {
+      borderRadiusInWell = BorderRadius.circular(this.borderRadius);
+    }
+    return Container(
+      margin: this.margin ?? EdgeInsets.zero,
+      alignment: this.alignment,
+      decoration: decoration ??
+          BoxDecoration(
+              gradient: this.backgroundColor == null ? AppColors.base_color_gradient : null,
+              color: this.backgroundColor ?? Colors.white,
+              border: Border.all(color: borderColor),
+              borderRadius: BorderRadius.circular(borderRadius ?? 5.sw)),
+      child: new Material(
+        child: new InkWell(
+          borderRadius: borderRadiusInWell,
+          onTap: () {
+            if (onTap != null) {
+              onTap();
+            }
+          },
+          child: Container(
+              width: width,
+              height: height,
+              padding: this.padding ?? EdgeInsets.symmetric(vertical: 12.sw, horizontal: 5.sw),
+              child: Center(child: renderChild())),
         ),
-        child: CustomTextLabel(
-          title.toUpperCase(),
-          color: Colors.white,
-          fontSize: AppDimens.SIZE_16,
-          fontWeight: FontWeight.w500,
-          textAlign: TextAlign.center,
-        ),
+        color: Colors.transparent,
       ),
     );
+  }
+
+  renderChild() {
+    if (title != null) {
+      return CustomTextLabel(
+        title,
+        fontWeight: FontWeight.w600,
+        fontSize: 16.sw,
+        color: AppColors.white,
+      );
+    }
+    return child ?? Container();
   }
 }

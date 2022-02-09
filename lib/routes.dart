@@ -16,11 +16,6 @@ class Routes {
   //init screen name
   static String initScreen() => splashScreen;
 
-  static final routes = <String, WidgetBuilder>{
-    splashScreen: (context) => SplashScreen(),
-    mainScreen: (context) => MainScreen(),
-  };
-
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case mainScreen:

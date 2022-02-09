@@ -39,6 +39,7 @@ dependencies:
   in_app_review: ^1.0.4
   share: ^0.6.5+4
   cached_network_image: ^2.5.1
+  scale_size: "0.0.4"
 
 dev_dependencies:
   flutter_test:

@@ -1,3 +1,6 @@
 {
-  "st_app_name": "tên app"
+  "st_app_name": "tên app",
+  "login": {
+    "title_login": "Đăng nhập"
+  }
 }

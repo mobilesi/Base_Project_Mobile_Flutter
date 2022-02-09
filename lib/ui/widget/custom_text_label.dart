@@ -12,7 +12,7 @@ class CustomTextLabel extends StatelessWidget {
   final Color color;
   final TextAlign textAlign;
   final int maxLines;
-  final double lineHeight;
+  final double fontHeight;
   final bool isLocalizeTitle;
 
   const CustomTextLabel(this.title,
@@ -22,7 +22,7 @@ class CustomTextLabel extends StatelessWidget {
       this.color,
       this.textAlign,
       this.maxLines,
-      this.lineHeight = 1,
+      this.fontHeight,
       this.isLocalizeTitle = true})
       : super(key: key);
 
@@ -37,6 +37,7 @@ class CustomTextLabel extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           maxLines: maxLines ?? 50,
           style: TextStyle(
+              height: fontHeight == null ? 22.27 / 19 : fontHeight,
               fontSize: this.fontSize ?? AppDimens.SIZE_14,
               fontWeight: this.fontWeight ?? FontWeight.normal,
               color: this.color ?? Colors.black),
