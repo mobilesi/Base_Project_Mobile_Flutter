@@ -55,7 +55,7 @@ class BaseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scaffold = Scaffold(
-        appBar: hideAppBar ? null : (customAppBar == null ? baseAppBar() : customAppBar),
+        appBar: hideAppBar ? null : (customAppBar == null ? baseAppBar(context) : customAppBar),
         backgroundColor: Colors.transparent,
         body: GestureDetector(
           behavior: HitTestBehavior.translucent,
@@ -93,7 +93,7 @@ class BaseScreen extends StatelessWidget {
     );
   }
 
-  baseAppBar() {
+  baseAppBar(BuildContext context) {
     var widgetTitle;
     if (title is Widget) {
       widgetTitle = title;
@@ -117,6 +117,7 @@ class BaseScreen extends StatelessWidget {
           : InkWell(
               onTap: () {
                 if (onBackPress != null) {
+                  Navigator.pop(context);
                   onBackPress?.call();
                 }
               },

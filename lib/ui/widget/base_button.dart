@@ -47,18 +47,18 @@ class BaseButton extends StatelessWidget {
               gradient: this.backgroundColor == null ? AppColors.base_color_gradient : null,
               color: this.backgroundColor ?? Colors.white,
               border: Border.all(color: borderColor!),
-              borderRadius: BorderRadius.circular(borderRadius ?? 5.sw)),
+              borderRadius: BorderRadius.circular(borderRadius ?? 10.sw)),
       child: new Material(
         child: new InkWell(
           borderRadius: borderRadiusInWell,
           onTap: () {
-              onTap?.call();
+            onTap?.call();
           },
           child: Container(
               width: width,
               height: height,
-              padding: this.padding ?? EdgeInsets.symmetric(vertical: 12.sw, horizontal: 5.sw),
-              child: Center(child: renderChild())),
+              padding: this.padding ?? EdgeInsets.symmetric(vertical: 12.sw, horizontal: 10.sw),
+              child: renderChild()),
         ),
         color: Colors.transparent,
       ),

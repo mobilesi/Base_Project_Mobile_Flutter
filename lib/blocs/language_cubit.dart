@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../constants.dart';
-import '../localizations.dart';
+import 'package:flutter_template/constants.dart';
+import 'package:flutter_template/localizations.dart';
 
 class LanguageCubit extends Cubit<String> {
   LanguageCubit() : super(Constants.VI);

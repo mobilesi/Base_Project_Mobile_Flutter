@@ -20,15 +20,16 @@ class LoadedState<T> extends BaseState {
   LoadedState(this.data, {this.msgError = "", this.timeEmit, this.isLocalizeMessage = true});
 
   @override
-  List<Object> get props => [msgError, timeEmit];
+  List<Object> get props => [data as Object, timeEmit ?? ""];
 }
 
 class ErrorState<T> extends BaseState {
   final T data;
+  final timeEmit;
   final bool isLocalizeMessage;
 
-  ErrorState(this.data, {this.isLocalizeMessage = true}) : assert(data != null);
+  ErrorState(this.data, {this.isLocalizeMessage = true, this.timeEmit}) : assert(data != null);
 
   @override
-  List<Object> get props => [data?.toString() ?? ""];
+  List<Object> get props => [data?.toString() ?? "", timeEmit];
 }

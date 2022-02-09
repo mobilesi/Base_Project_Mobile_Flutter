@@ -32,7 +32,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             BaseButton(
-              width: 160.sw,
               margin: EdgeInsets.symmetric(horizontal: 30.sw, vertical: 10.sw),
               title: "login.title_login",
             )
