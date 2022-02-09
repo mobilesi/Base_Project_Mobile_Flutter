@@ -1,27 +1,27 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/res/resources.dart';
+import 'package:flutter_template/localizations.dart';
+import 'package:scale_size/scale_size.dart';
 
-import '../../localizations.dart';
 import 'locale_widget.dart';
 
 class CustomTextLabel extends StatelessWidget {
   final title;
-  final double fontSize;
+  final double? fontSize;
   final FontWeight fontWeight;
   final Color color;
   final TextAlign textAlign;
   final int maxLines;
-  final double fontHeight;
+  final double? fontHeight;
   final bool isLocalizeTitle;
 
   const CustomTextLabel(this.title,
-      {Key key,
+      {Key? key,
       this.fontSize,
-      this.fontWeight,
-      this.color,
-      this.textAlign,
-      this.maxLines,
+      this.fontWeight = FontWeight.normal,
+      this.color = Colors.black,
+      this.textAlign = TextAlign.start,
+      this.maxLines = 50,
       this.fontHeight,
       this.isLocalizeTitle = true})
       : super(key: key);
@@ -30,17 +30,17 @@ class CustomTextLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO custom font fontFamily
     return LocaleWidget(
-      builder: (Language locale) {
+      builder: (Language? locale) {
         return Text(
-          locale.getText(this.title) ?? this.title,
-          textAlign: textAlign ?? TextAlign.start,
+          locale?.getText(this.title) ?? this.title,
+          textAlign: textAlign,
           overflow: TextOverflow.ellipsis,
-          maxLines: maxLines ?? 50,
+          maxLines: maxLines,
           style: TextStyle(
               height: fontHeight == null ? 22.27 / 19 : fontHeight,
-              fontSize: this.fontSize ?? AppDimens.SIZE_14,
-              fontWeight: this.fontWeight ?? FontWeight.normal,
-              color: this.color ?? Colors.black),
+              fontSize: this.fontSize ?? 14.sw,
+              fontWeight: this.fontWeight,
+              color: this.color),
         );
       },
     );

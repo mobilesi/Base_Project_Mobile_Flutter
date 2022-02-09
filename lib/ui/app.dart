@@ -9,7 +9,7 @@ import 'package:flutter_template/utils/navigator.dart';
 RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 
 class MyApp extends StatelessWidget {
-  final String language;
+  final String? language;
 
   MyApp.language(this.language);
 
@@ -26,7 +26,9 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         DefaultCupertinoLocalizations.delegate
       ],
-      locale: this.language == null ? Constants.SUPPORT_LOCALE[0] : Locale(this.language),
+      locale: this.language == null
+          ? Constants.SUPPORT_LOCALE[0]
+          : Locale(this.language ?? Constants.SUPPORT_LOCALE[0].languageCode),
       supportedLocales: Constants.SUPPORT_LOCALE,
       localeResolutionCallback: (locale, supportedLocales) => _localeCallback(locale, supportedLocales),
       initialRoute: Routes.initScreen(),
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  Locale _localeCallback(Locale locale, Iterable<Locale> supportedLocales) {
+  Locale _localeCallback(Locale? locale, Iterable<Locale> supportedLocales) {
     if (locale == null) {
       return supportedLocales.first;
     }

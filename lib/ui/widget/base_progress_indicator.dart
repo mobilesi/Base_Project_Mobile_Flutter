@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/res/colors.dart';
 
 class BaseProgressIndicator extends StatelessWidget {
-  final double size;
+  final double? size;
 
-  const BaseProgressIndicator({Key key, this.size}) : super(key: key);
+  const BaseProgressIndicator({Key? key, this.size}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

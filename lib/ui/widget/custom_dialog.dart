@@ -5,14 +5,14 @@ import 'package:flutter_template/res/dimens.dart';
 import 'custom_text_label.dart';
 
 class CustomDialog extends StatelessWidget {
-  final Function onSubmit;
+  final Function? onSubmit;
   final String titleSubmit;
-  final Image image;
-  final String content;
-  final String buttonText;
+  final Image? image;
+  final String? content;
+  final String? buttonText;
 
   const CustomDialog({
-    Key key,
+    Key? key,
     this.onSubmit,
     this.titleSubmit = "title_ok",
     this.image,
@@ -61,7 +61,7 @@ class CustomDialog extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         Navigator.of(context).pop();
-                        onSubmit();
+                        onSubmit?.call();
                       },
                       child: Container(
                         margin: EdgeInsets.only(top: 20, bottom: 12),

@@ -6,7 +6,7 @@ import 'package:flutter_template/localizations.dart';
 class LocaleWidget extends StatelessWidget {
   final builder;
 
-  const LocaleWidget({Key key, this.builder}) : super(key: key);
+  const LocaleWidget({Key? key, this.builder}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

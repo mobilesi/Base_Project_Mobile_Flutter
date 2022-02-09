@@ -13,19 +13,20 @@ class Network {
 
   Network._internal() {
     _dio.interceptors.add(LogInterceptor(responseBody: true, requestHeader: true));
-    _dio.interceptors.add(InterceptorsWrapper(onRequest: (Options myOption) async {
+    _dio.interceptors
+        .add(InterceptorsWrapper(onRequest: (RequestOptions myOption, RequestInterceptorHandler handler) async {
       String token = await SharedPreferenceUtil.getToken();
       print("===_internal =====${token}");
       if (token.isNotEmpty) {
         myOption.headers["Authorization"] = "Bearer " + token;
       }
-      return myOption;
+      // return myOption;
     }));
   }
 
   static final Network instance = Network._internal();
 
-  Future<Response<ApiResponse>> get({String url, Map<String, dynamic> params = const {}}) async {
+  Future<Response<ApiResponse>> get({required String url, Map<String, dynamic> params = const {}}) async {
     try {
       Response response = await _dio.get(
         url,
@@ -41,7 +42,7 @@ class Network {
   }
 
   Future<Response<ApiResponse>> post(
-      {String url,
+      {required String url,
       Object body = const {},
       Map<String, dynamic> params = const {},
       String contentType = Headers.jsonContentType}) async {
@@ -62,14 +63,13 @@ class Network {
 
   Response<ApiResponse> getError(DioError e) {
     switch (e.type) {
-      case DioErrorType.CANCEL:
-      case DioErrorType.CONNECT_TIMEOUT:
-      case DioErrorType.RECEIVE_TIMEOUT:
-      case DioErrorType.SEND_TIMEOUT:
-      case DioErrorType.DEFAULT:
-        return Response<ApiResponse>(data: ApiResponse.error("error_api.connect"));
+      case DioErrorType.cancel:
+      case DioErrorType.connectTimeout:
+      case DioErrorType.receiveTimeout:
+      case DioErrorType.sendTimeout:
+        return Response<ApiResponse>(requestOptions: e.requestOptions, data: ApiResponse.error("error_api.connect"));
       default:
-        return Response<ApiResponse>(data: ApiResponse.error("error_api.default"));
+        return Response<ApiResponse>(requestOptions: e.requestOptions, data: ApiResponse.error("error_api.default"));
     }
   }
 
@@ -87,6 +87,7 @@ class Network {
       returnValue = response.data["map"]["return_value"];
     } catch (e) {}
     return Response<ApiResponse>(
+        requestOptions: response.requestOptions,
         data: ApiResponse.success(
             data: response.data["map"],
             code: response.data["code"],

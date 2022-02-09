@@ -8,28 +8,28 @@ class BaseScreen extends StatelessWidget {
   static double toolbarHeight = 50.sw;
 
   // body của màn hình
-  final Widget body;
+  final Widget? body;
 
   // title của appbar có 2 kiểu String và Widget
   // title là kiểu Widget thì sẽ render widget
   // title là String
-  final dynamic title;
+  final dynamic? title;
 
   // trường hợp có AppBar đặc biệt thì dùng customAppBar
-  final Widget customAppBar;
+  final Widget? customAppBar;
 
   // callBack của onBackPress với trường hợp  hiddenIconBack = false
-  final Function onBackPress;
+  final Function? onBackPress;
 
   // custom widget bên phải của appBar
-  final List<Widget> rightWidgets;
+  final List<Widget>? rightWidgets;
 
   // loadingWidget để show loading toàn màn hình
-  final Widget loadingWidget;
+  final Widget? loadingWidget;
 
   // show thông báo
-  final Widget messageNotify;
-  final Widget floatingButton;
+  final Widget? messageNotify;
+  final Widget? floatingButton;
 
   // nếu true => sẽ ẩn backIcon , mặc định là true
   final bool hiddenIconBack;
@@ -38,7 +38,7 @@ class BaseScreen extends StatelessWidget {
   final bool hideAppBar;
 
   const BaseScreen(
-      {Key key,
+      {Key? key,
       this.body,
       this.title = "",
       this.customAppBar,
@@ -117,7 +117,7 @@ class BaseScreen extends StatelessWidget {
           : InkWell(
               onTap: () {
                 if (onBackPress != null) {
-                  onBackPress();
+                  onBackPress?.call();
                 }
               },
               child: Container(

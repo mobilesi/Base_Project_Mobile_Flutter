@@ -11,7 +11,7 @@ import 'utils/shared_preference.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences preferences = await SharedPreferences.getInstance();
-  String language = preferences.getString(SPrefCache.PREF_KEY_LANGUAGE);
+  String? language = preferences.getString(SPrefCache.PREF_KEY_LANGUAGE);
   runApp(MultiBlocProvider(providers: [
     BlocProvider(
       create: (_) => LanguageCubit(),

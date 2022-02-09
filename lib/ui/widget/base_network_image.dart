@@ -1,18 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
-import 'base_progress_indicator.dart';
+import 'package:flutter_template/ui/widget/base_progress_indicator.dart';
+import 'package:scale_size/scale_size.dart';
 
 class BaseNetworkImage extends StatelessWidget {
-  final String url;
+  final String? url;
   final double borderRadius;
-  final double width;
-  final double height;
-  final String errorAssetImage;
-  final double loadingSize;
+  final double? width;
+  final double? height;
+  final String? errorAssetImage;
+  final double? loadingSize;
 
   const BaseNetworkImage(
-      {Key key, this.url, this.borderRadius = 0, this.width, this.height, this.errorAssetImage, this.loadingSize})
+      {Key? key, this.url, this.borderRadius = 0, this.width, this.height, this.errorAssetImage, this.loadingSize})
       : super(key: key);
 
   @override
@@ -24,7 +24,7 @@ class BaseNetworkImage extends StatelessWidget {
         height: this.height ?? double.infinity,
         child: errorAssetImage?.isNotEmpty ?? false
             ? Image.asset(
-                errorAssetImage,
+                errorAssetImage!,
                 width: this.width,
                 height: this.height,
                 fit: BoxFit.cover,
@@ -39,9 +39,9 @@ class BaseNetworkImage extends StatelessWidget {
               width: this.width ?? double.infinity,
               height: this.height ?? double.infinity,
               fit: BoxFit.cover,
-              imageUrl: url,
+              imageUrl: url!,
               placeholder: (context, url) => Center(
-                child: BaseProgressIndicator(size: loadingSize),
+                child:  BaseProgressIndicator(size: loadingSize ?? 10.sw),
               ),
               errorWidget: (context, url, error) => Icon(Icons.error),
             ),

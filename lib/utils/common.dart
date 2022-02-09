@@ -4,7 +4,7 @@ import 'dart:math' as Math;
 import 'package:share/share.dart';
 
 class Common {
-  static DateTime parserDate(String date, String format) {
+  static DateTime? parserDate(String date, String format) {
     try {
       DateTime dateTime = DateFormat(format).parse(date);
       return dateTime;
@@ -22,23 +22,23 @@ class Common {
     }
   }
 
-  static int strToInt(String data, {int defaultValue}) {
+  static int strToInt(String data, {int defaultValue = 0}) {
     try {
-      if (data.isEmpty) return 0;
+      if (data.isEmpty) return defaultValue;
       return int.parse(data);
     } catch (e) {
       return defaultValue ?? -1;
     }
   }
 
-  static num doubleWithoutDecimalToInt(double val) {
+  static num? doubleWithoutDecimalToInt(double? val) {
     if (val == null) {
       return null;
     }
     return val % 1 == 0 ? val.toInt() : val;
   }
 
-  static double strToDouble(String data, {double defaultValue}) {
+  static double strToDouble(String data, {double? defaultValue}) {
     try {
       if (data.isEmpty) return 0;
       return double.parse(data);

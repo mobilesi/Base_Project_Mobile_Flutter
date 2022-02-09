@@ -16,7 +16,7 @@ class _SplashState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    SchedulerBinding.instance.addPostFrameCallback((_) => openScreen(context));
+    SchedulerBinding.instance?.addPostFrameCallback((_) => openScreen(context));
   }
 
   Widget build(BuildContext context) {

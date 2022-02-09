@@ -8,14 +8,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'utils/shared_preference.dart';
 
-Map<String, dynamic> language;
+Map<String, dynamic>? language;
 
 class Language {
   final Locale _locale;
 
   Language(this._locale);
 
-  static Language of(BuildContext context) {
+  static Language? of(BuildContext context) {
     return Localizations.of<Language>(context, Language);
   }
 
@@ -24,16 +24,16 @@ class Language {
     try {
       List<String> listKey = key.split(".");
       if (listKey.length == 1) {
-        return language[key] ?? key;
+        return language?[key] ?? key;
       }
       dynamic valueNest;
       for (int i = 0; i < listKey.length - 1; i++) {
-        valueNest = language[listKey[i]];
+        valueNest = language?[listKey[i]];
       }
       String keyResult = listKey[listKey.length - 1];
       return valueNest[keyResult] ?? key;
     } catch (e) {
-      return key ?? "";
+      return key ;
     }
   }
 

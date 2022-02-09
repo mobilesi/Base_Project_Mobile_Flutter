@@ -11,25 +11,28 @@ class NavigationService {
   final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
 
   pushReplacement(String routeName) {
-    navigatorKey.currentState.popUntil((route) => route.isFirst);
-    navigatorKey.currentState.pushReplacementNamed(routeName);
+    navigatorKey.currentState?.popUntil((route) => route.isFirst);
+    navigatorKey.currentState?.pushReplacementNamed(routeName);
   }
 
   popToRootView() {
-    navigatorKey.currentState.popUntil((route) => route.isFirst);
+    navigatorKey.currentState?.popUntil((route) => route.isFirst);
   }
 
   pop() {
-    navigatorKey.currentState.pop();
+    navigatorKey.currentState?.pop();
   }
 
   popWithParam(param) {
-    navigatorKey.currentState.pop(param);
+    navigatorKey.currentState?.pop(param);
   }
 
   showDialogTokenExpired() {
-    BuildContext context = navigatorKey.currentState.overlay.context;
-    String message = Language.of(context).getText("token_expired_message");
+    BuildContext? context = navigatorKey.currentState?.overlay?.context;
+    if(context == null){
+      return;
+    }
+    String? message = Language.of(context)?.getText.call("token_expired_message") ?? "";
     showDialog(
       barrierDismissible: false,
       context: context,

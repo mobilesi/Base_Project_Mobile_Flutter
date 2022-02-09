@@ -9,22 +9,22 @@ class CustomTextInput extends StatefulWidget {
   final onSubmitted;
   final TextInputType keyboardType;
   final String title;
-  final TextStyle titleStyle;
+  final TextStyle? titleStyle;
   final int maxLines;
-  final TextInputAction textInputAction;
+  final TextInputAction? textInputAction;
   String errorText;
-  final Function getTextFieldValue;
+  final Function? getTextFieldValue;
   final int minLines;
   final bool obscureText;
-  final Function changeFocus;
+  final Function? changeFocus;
   final String hintText;
-  final EdgeInsets margin;
-  final EdgeInsets padding;
+  final EdgeInsets? margin;
+  final EdgeInsets? padding;
   final initData;
-  final double width;
-  final TextEditingController textController;
-  final FontWeight fontWeight;
-  final TextAlign align;
+  final double? width;
+  final TextEditingController? textController;
+  final FontWeight? fontWeight;
+  final TextAlign? align;
   final bool enabled;
   final hideUnderline;
   final formatNumber;
@@ -35,7 +35,7 @@ class CustomTextInput extends StatefulWidget {
   final bool enableBorder;
 
   CustomTextInput({
-    Key key,
+    Key? key,
     this.getTextFieldValue,
     this.onSubmitted,
     this.keyboardType = TextInputType.text,
@@ -76,8 +76,8 @@ class TextFieldState extends State<CustomTextInput> {
   void initState() {
     super.initState();
     if (widget.initData != null) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        widget.textController.text = widget.initData.toString();
+      WidgetsBinding.instance?.addPostFrameCallback((_) {
+        widget.textController?.text = widget.initData.toString();
       });
     }
   }
@@ -92,7 +92,7 @@ class TextFieldState extends State<CustomTextInput> {
           Container(
             padding: EdgeInsets.only(bottom: 5.sw),
             child: CustomTextLabel(
-              widget.title ?? "",
+              widget.title,
               color: AppColors.ff828282,
               fontSize: 14.sw,
               fontWeight: FontWeight.w400,
@@ -134,7 +134,7 @@ class TextFieldState extends State<CustomTextInput> {
                           borderSide: BorderSide(color: AppColors.base_color_border_textfield, width: 1),
                         ),
                   hintStyle: TextStyle(color: AppColors.ffBDBDBD, fontWeight: FontWeight.w400, fontSize: 14.sw),
-                  hintText: Language.of(context).getText(widget.hintText),
+                  hintText: Language.of(context)?.getText.call(widget.hintText),
                   isDense: true,
                   // and add this line
                   contentPadding: widget.padding ??
@@ -148,14 +148,14 @@ class TextFieldState extends State<CustomTextInput> {
               maxLines: widget.maxLines,
               minLines: widget.minLines,
               onTap: () {
-                if (widget.textController.text == '0') {
-                  widget.textController.selection =
-                      TextSelection.fromPosition(TextPosition(offset: widget.textController.text.length));
+                if (widget.textController?.text == '0') {
+                  widget.textController?.selection =
+                      TextSelection.fromPosition(TextPosition(offset: widget.textController?.text.length ?? 0));
                 }
               },
               onChanged: (_text) {
                 String currentText = _text.trim();
-                widget.getTextFieldValue(currentText);
+                widget.getTextFieldValue?.call(currentText);
               },
             ),
           ),

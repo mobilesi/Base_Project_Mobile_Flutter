@@ -4,22 +4,22 @@ import 'package:flutter_template/ui/widget/custom_text_label.dart';
 import 'package:scale_size/scale_size.dart';
 
 class BaseButton extends StatelessWidget {
-  final String title;
-  final BoxDecoration decoration;
-  final GestureTapCallback onTap;
-  final Widget child;
-  final Color backgroundColor;
-  final double borderRadius;
-  final Color borderColor;
-  final EdgeInsetsGeometry margin;
-  final EdgeInsetsGeometry padding;
-  final AlignmentGeometry alignment;
-  final double width;
-  final double height;
+  final String? title;
+  final BoxDecoration? decoration;
+  final GestureTapCallback? onTap;
+  final Widget? child;
+  final Color? backgroundColor;
+  final double? borderRadius;
+  final Color? borderColor;
+  final EdgeInsetsGeometry? margin;
+  final EdgeInsetsGeometry? padding;
+  final AlignmentGeometry? alignment;
+  final double? width;
+  final double? height;
 
   const BaseButton(
       {this.child,
-      Key key,
+      Key? key,
       this.decoration,
       this.onTap,
       this.backgroundColor,
@@ -35,12 +35,9 @@ class BaseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var borderRadiusInWell = BorderRadius.circular(0);
-    if (this.decoration != null) {
-      borderRadiusInWell = this.decoration.borderRadius;
-    }
+    BorderRadius? borderRadiusInWell = BorderRadius.circular(0);
     if (this.borderRadius != null) {
-      borderRadiusInWell = BorderRadius.circular(this.borderRadius);
+      borderRadiusInWell = BorderRadius.circular(this.borderRadius!);
     }
     return Container(
       margin: this.margin ?? EdgeInsets.zero,
@@ -49,15 +46,13 @@ class BaseButton extends StatelessWidget {
           BoxDecoration(
               gradient: this.backgroundColor == null ? AppColors.base_color_gradient : null,
               color: this.backgroundColor ?? Colors.white,
-              border: Border.all(color: borderColor),
+              border: Border.all(color: borderColor!),
               borderRadius: BorderRadius.circular(borderRadius ?? 5.sw)),
       child: new Material(
         child: new InkWell(
           borderRadius: borderRadiusInWell,
           onTap: () {
-            if (onTap != null) {
-              onTap();
-            }
+              onTap?.call();
           },
           child: Container(
               width: width,
