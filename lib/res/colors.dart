@@ -11,6 +11,7 @@ class AppColors {
   static const Color border = Color(0xFFD4CFCF);
   static const Color ffBDBDBD = Color(0xFFBDBDBD);
   static const Color ff828282 = Color(0xFF828282);
+  static const Color disable = Color(0xffF0F4F9);
 
   static const LinearGradient base_color_gradient = LinearGradient(colors: [
     Color(0xFF258EFF),

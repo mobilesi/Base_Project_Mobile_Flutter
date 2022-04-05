@@ -4,14 +4,17 @@ import 'dart:math' as Math;
 import 'package:share/share.dart';
 
 class Common {
-  static DateTime? parserDate(String date, String format) {
+  static DateTime? parserDate(String? date, {String? format}) {
     try {
-      DateTime dateTime = DateFormat(format).parse(date);
-      return dateTime;
+      if (format == null) {
+        return DateTime.parse(date!);
+      }
+      return DateFormat(format).parse(date!);
     } catch (e) {
       return null;
     }
   }
+
 
   static String fromDate(DateTime date, format) {
     try {
@@ -47,12 +50,15 @@ class Common {
     }
   }
 
-  static String formatPrice(price) {
+  static String formatPrice(price, {bool showPrefix = true}) {
+    if (price == null) {
+      return "";
+    }
     try {
-      final numberFormat = new NumberFormat("#,###");
-      return numberFormat.format(price);
+      final numberFormat = NumberFormat("#,###");
+      return numberFormat.format(double.parse(price.toString()).round()) + "${showPrefix ? "đ" : ""}";
     } catch (e) {
-      return price.toString();
+      return price?.toString() ?? "";
     }
   }
 

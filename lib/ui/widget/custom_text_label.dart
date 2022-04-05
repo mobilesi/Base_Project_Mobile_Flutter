@@ -6,7 +6,7 @@ import 'package:scale_size/scale_size.dart';
 import 'locale_widget.dart';
 
 class CustomTextLabel extends StatelessWidget {
-  final title;
+  final dynamic title;
   final double? fontSize;
   final FontWeight fontWeight;
   final Color color;
@@ -17,13 +17,13 @@ class CustomTextLabel extends StatelessWidget {
 
   const CustomTextLabel(this.title,
       {Key? key,
-      this.fontSize,
-      this.fontWeight = FontWeight.normal,
-      this.color = Colors.black,
-      this.textAlign = TextAlign.start,
-      this.maxLines = 50,
-      this.fontHeight,
-      this.isLocalizeTitle = true})
+        this.fontSize,
+        this.fontWeight = FontWeight.normal,
+        this.color = Colors.black,
+        this.textAlign = TextAlign.start,
+        this.maxLines = 50,
+        this.fontHeight,
+        this.isLocalizeTitle = true})
       : super(key: key);
 
   @override
@@ -32,15 +32,12 @@ class CustomTextLabel extends StatelessWidget {
     return LocaleWidget(
       builder: (Language? locale) {
         return Text(
-          locale?.getText(this.title) ?? this.title,
+          locale?.getText(this.title?.toString() ?? "") ?? (title?.toString() ?? ""),
           textAlign: textAlign,
           overflow: TextOverflow.ellipsis,
           maxLines: maxLines,
           style: TextStyle(
-              height: fontHeight == null ? 22.27 / 19 : fontHeight,
-              fontSize: this.fontSize ?? 14.sw,
-              fontWeight: this.fontWeight,
-              color: this.color),
+              height: fontHeight ?? 22.27 / 19, fontSize: fontSize ?? 14.sw, fontWeight: fontWeight, color: color),
         );
       },
     );
