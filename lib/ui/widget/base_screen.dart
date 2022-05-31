@@ -116,10 +116,8 @@ class BaseScreen extends StatelessWidget {
           ? Container()
           : InkWell(
               onTap: () {
-                if (onBackPress != null) {
-                  Navigator.pop(context);
-                  onBackPress?.call();
-                }
+                Navigator.pop(context);
+                onBackPress?.call();
               },
               child: Container(
                 width: 50.sw,

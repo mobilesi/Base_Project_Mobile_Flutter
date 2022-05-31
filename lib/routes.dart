@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/ui/screen/auth/login_screen.dart';
-import 'package:flutter_template/ui/screen/main_screen.dart';
+import 'package:flutter_template/ui/screen/screen.dart';
 import 'package:page_transition/page_transition.dart';
 
-import 'ui/screen/splash_screen.dart';
 
 class Routes {
   Routes._();

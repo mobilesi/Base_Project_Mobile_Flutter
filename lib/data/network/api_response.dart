@@ -1,17 +1,21 @@
+
 class ApiResponse<T> {
   String? message;
-  String? code;
-  String? result;
-  String? returnValue;
+  int? code;
   T? data;
+  int? status;
+  String? errMessage;
 
-  ApiResponse.success({this.data, this.code, this.message, this.result, this.returnValue});
+  ApiResponse.success({
+    this.data,
+    this.code,
+    this.message,
+    this.status,
+    this.errMessage
+  });
 
-  ApiResponse.error(this.message);
+  ApiResponse.error(this.message, {this.data, this.code});
 
-  bool get isSuccess => this.code != null && this.code == "200";
-
-  bool get isResultSuccess => this.result != null && this.result == "TRUE";
-
-  bool get isReturnValueSuccess => this.returnValue != null && this.returnValue == '0';
+  bool get isSuccess => code != null && code == 200;
+  bool get isStatusSuccess => status == 200;
 }

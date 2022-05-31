@@ -1,36 +1,41 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_template/data/network/network.dart';
 import 'package:flutter_template/utils/navigator.dart';
 import 'package:flutter_template/utils/shared_preference.dart';
 
-import 'api_response.dart';
-import 'network.dart';
-
 class Network {
-  static int _timeOut = 10000; //10s
-  static BaseOptions options =
-      BaseOptions(connectTimeout: _timeOut, receiveTimeout: _timeOut, baseUrl: ApiConstant.apiHost);
-  static Dio _dio = Dio(options);
+  final String? baseUrl;
 
-  Network._internal() {
+  // static int _timeOut = 15000; //15s
+  final int? timeOut; //15s
+  static BaseOptions options = BaseOptions(connectTimeout: 15000, receiveTimeout: 15000, baseUrl: ApiConstant.apiHost);
+  static final Dio _dio = Dio(options);
+
+  Network._internal({this.baseUrl, this.timeOut}) {
+    if (baseUrl?.isNotEmpty ?? false) {
+      _dio.options.baseUrl = baseUrl!;
+    }
+    _dio.options.connectTimeout = timeOut ?? 15000;
     _dio.interceptors.add(LogInterceptor(responseBody: true, requestHeader: true));
     _dio.interceptors
         .add(InterceptorsWrapper(onRequest: (RequestOptions myOption, RequestInterceptorHandler handler) async {
       String token = await SharedPreferenceUtil.getToken();
-      print("===_internal =====${token}");
       if (token.isNotEmpty) {
         myOption.headers["Authorization"] = "Bearer " + token;
       }
-      // return myOption;
+      return handler.next(myOption);
     }));
   }
 
-  static final Network instance = Network._internal();
+  factory Network({String? baseUrl, int? timeOut}) {
+    return Network._internal(baseUrl: baseUrl ?? ApiConstant.apiHost, timeOut: timeOut ?? 15000);
+  }
 
-  Future<Response<ApiResponse>> get({required String url, Map<String, dynamic> params = const {}}) async {
+  Future<ApiResponse> get({required String url, Map<String, dynamic>? params}) async {
     try {
       Response response = await _dio.get(
         url,
-        queryParameters: params,
+        queryParameters: await BaseParamRequest.request(params),
         options: Options(responseType: ResponseType.json),
       );
       return getApiResponse(response);
@@ -41,63 +46,60 @@ class Network {
     }
   }
 
-  Future<Response<ApiResponse>> post(
+  Future<ApiResponse> post(
       {required String url,
-      Object body = const {},
+      Map<String, dynamic>? body,
       Map<String, dynamic> params = const {},
       String contentType = Headers.jsonContentType}) async {
     try {
       Response response = await _dio.post(
         url,
-        data: body,
+        data: await BaseParamRequest.request(body),
         queryParameters: params,
         options: Options(responseType: ResponseType.json, contentType: contentType),
       );
       return getApiResponse(response);
-    } on DioError catch (e) {
-      //handle error
-      print("DioError: ${e.toString()}");
-      return getError(e);
+    } catch (e) {
+      print("===post =====${e}");
+      return getError(e as DioError);
     }
   }
 
-  Response<ApiResponse> getError(DioError e) {
+  ApiResponse getError(DioError e) {
+    if (e.response?.statusCode == 401) {
+      handleTokenExpired();
+    }
     switch (e.type) {
       case DioErrorType.cancel:
       case DioErrorType.connectTimeout:
       case DioErrorType.receiveTimeout:
       case DioErrorType.sendTimeout:
-        return Response<ApiResponse>(requestOptions: e.requestOptions, data: ApiResponse.error("error_api.connect"));
+        return ApiResponse.error(
+          "error_api.connect",
+        );
       default:
-        return Response<ApiResponse>(requestOptions: e.requestOptions, data: ApiResponse.error("error_api.default"));
+        return ApiResponse.error(e.message, data: getDataReplace(e.response?.data), code: e.response?.statusCode);
     }
   }
 
-  Response<ApiResponse> getApiResponse(Response response) {
-    // case token expired
-    switch (response.data["code"]) {
-      case "005":
-      case "006":
-        handleTokenExpired();
-    }
-    var result;
-    var returnValue;
-    try {
-      result = response.data["map"]["PO_RESULT"];
-      returnValue = response.data["map"]["return_value"];
-    } catch (e) {}
-    return Response<ApiResponse>(
-        requestOptions: response.requestOptions,
-        data: ApiResponse.success(
-            data: response.data["map"],
-            code: response.data["code"],
-            result: result,
-            returnValue: returnValue,
-            message: response.data["code"]));
+  ApiResponse getApiResponse(Response response) {
+    return ApiResponse.success(
+        data: response.data,
+        code: response.statusCode,
+        message: response.statusMessage,
+        status: response.data is Map<String, dynamic> ? response.data["Status"] : null,
+        errMessage: response.data is Map<String, dynamic> ? response.data["ErrMsg"] : null);
   }
 
   void handleTokenExpired() async {
     NavigationService.instance.showDialogTokenExpired();
-    await SharedPreferenceUtil.clearData();
+    // await SharedPreferenceUtil.clearData();
+  }
+
+  getDataReplace(data) {
+    if (data is String) {
+      return data.replaceAll("loi:", "").replaceAll(":loi", "").trim();
+    }
+    return data;
   }
 }
