@@ -1,6 +1,6 @@
-import 'package:intl/intl.dart';
 import 'dart:math' as Math;
 
+import 'package:intl/intl.dart';
 import 'package:share/share.dart';
 
 class Common {
@@ -14,7 +14,6 @@ class Common {
       return null;
     }
   }
-
 
   static String fromDate(DateTime date, format) {
     try {
@@ -56,7 +55,7 @@ class Common {
     }
     try {
       final numberFormat = NumberFormat("#,###");
-      return numberFormat.format(double.parse(price.toString()).round()) + "${showPrefix ? "đ" : ""}";
+      return numberFormat.format(double.parse(price.toString()).round()) + "${showPrefix ? " đ" : ""}";
     } catch (e) {
       return price?.toString() ?? "";
     }

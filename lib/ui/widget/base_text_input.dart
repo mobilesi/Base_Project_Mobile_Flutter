@@ -22,7 +22,7 @@ class CustomTextInput extends StatefulWidget {
   final TextInputAction? textInputAction;
   final Function? getTextFieldValue;
   final int minLines;
-  final bool obscureText;
+  final bool? obscureText;
   final Function? changeFocus;
   final String hintText;
   final EdgeInsets? margin;
@@ -67,7 +67,7 @@ class CustomTextInput extends StatefulWidget {
         this.maxLines = 1,
         this.textInputAction,
         this.minLines = 1,
-        this.obscureText = false,
+        this.obscureText,
         this.changeFocus,
         this.hintText = "",
         this.margin,
@@ -209,6 +209,8 @@ class TextFieldState extends State<CustomTextInput> {
                       prefixIcon: widget.prefixIcon,
                       focusColor: Colors.white,
                       border: InputBorder.none,
+                      suffixIconConstraints: BoxConstraints(maxHeight: 35),
+                      prefixIconConstraints: BoxConstraints(maxHeight: 35),
                       disabledBorder: widget.hideUnderline
                           ? (widget.enableBorder
                           ? const OutlineInputBorder(borderSide: BorderSide(color: AppColors.border))
@@ -237,7 +239,7 @@ class TextFieldState extends State<CustomTextInput> {
                       contentPadding: widget.padding ??
                           EdgeInsets.symmetric(horizontal: widget.hideUnderline == false ? 0 : 10.sw, vertical: 10.sw)),
                   controller: textController,
-                  obscureText: !widget.obscureText ? widget.obscureText : _showText,
+                  obscureText: widget.obscureText == null  ? _showText : widget.obscureText!,
                   keyboardType: widget.formatCurrency ? TextInputType.number : widget.keyboardType,
                   textInputAction: widget.textInputAction,
                   onSubmitted: widget.onSubmitted,

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/localizations.dart';
+import 'package:flutter_template/utils/common.dart';
 import 'package:scale_size/scale_size.dart';
 
 import 'locale_widget.dart';
@@ -13,7 +14,7 @@ class CustomTextLabel extends StatelessWidget {
   final TextAlign textAlign;
   final int maxLines;
   final double? fontHeight;
-  final bool isLocalizeTitle;
+  final bool formatCurrency;
 
   const CustomTextLabel(this.title,
       {Key? key,
@@ -23,7 +24,7 @@ class CustomTextLabel extends StatelessWidget {
         this.textAlign = TextAlign.start,
         this.maxLines = 50,
         this.fontHeight,
-        this.isLocalizeTitle = true})
+        this.formatCurrency = false})
       : super(key: key);
 
   @override
@@ -32,7 +33,10 @@ class CustomTextLabel extends StatelessWidget {
     return LocaleWidget(
       builder: (Language? locale) {
         return Text(
-          locale?.getText(this.title?.toString() ?? "") ?? (title?.toString() ?? ""),
+          (formatCurrency
+              ? Common.formatPrice(title ?? "")
+              : locale?.getText(title?.toString() ?? "").trim() ?? title?.toString()?.trim()) ??
+              "",
           textAlign: textAlign,
           overflow: TextOverflow.ellipsis,
           maxLines: maxLines,
