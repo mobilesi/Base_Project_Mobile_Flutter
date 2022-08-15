@@ -23,7 +23,7 @@ class CustomSnackBar<T extends Cubit<BaseState>> extends StatelessWidget {
             mess = state.data;
           }
           if (mess?.isNotEmpty ?? false) {
-            Scaffold.of(context).showSnackBar(SnackBar(
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: CustomTextLabel(
                 mess,
                 fontSize: fontSize ?? 14.sw,
