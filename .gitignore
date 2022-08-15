@@ -128,3 +128,4 @@ fastlane/report.xml
 fastlane/temp/*
 fastlane/.env.secret
 fastlane/README.md
+.fvm
