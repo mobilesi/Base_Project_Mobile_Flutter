@@ -20,6 +20,5 @@ class _KeepAlivePageState extends State<KeepAlivePage> with AutomaticKeepAliveCl
   }
 
   @override
-  // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
 }

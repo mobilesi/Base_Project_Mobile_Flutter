@@ -8,6 +8,6 @@ export 'base_text_input.dart';
 export 'custom_dialog.dart';
 export 'custom_text_label.dart';
 export 'custom_underline.dart';
-export 'custome_snack_bar.dart';
+export 'custom_snack_bar.dart';
 export 'keep_alive_page_widget.dart';
 export 'locale_widget.dart';

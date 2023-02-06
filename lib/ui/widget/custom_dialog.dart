@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/res/colors.dart';
 import 'package:flutter_template/res/dimens.dart';
-
-import 'custom_text_label.dart';
+import 'package:flutter_template/ui/widget/widget.dart';
 
 class CustomDialog extends StatelessWidget {
   final Function? onSubmit;

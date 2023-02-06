@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../res/colors.dart';
+import 'package:flutter_template/res/resources.dart';
 
 class CustomUnderLine extends StatelessWidget {
   final Color color;

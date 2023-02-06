@@ -22,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Container(
               child: CustomTextInput(
                 margin: EdgeInsets.symmetric(
-                  horizontal: 10.sw,
+                  horizontal: 10,
                 ),
                 enableBorder: true,
                 textController: TextEditingController(),
@@ -32,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             BaseButton(
-              margin: EdgeInsets.symmetric(horizontal: 30.sw, vertical: 10.sw),
+              margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               title: "login.title_login",
             )
           ],

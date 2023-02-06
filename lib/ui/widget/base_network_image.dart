@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/ui/widget/base_progress_indicator.dart';
-import 'package:scale_size/scale_size.dart';
 
 class BaseNetworkImage extends StatelessWidget {
   final String? url;
@@ -41,11 +40,11 @@ class BaseNetworkImage extends StatelessWidget {
               fit: BoxFit.cover,
               imageUrl: url!,
               placeholder: (context, url) => Center(
-                child:  BaseProgressIndicator(size: loadingSize ?? 10.sw),
+                child:  BaseProgressIndicator(size: loadingSize ?? 10),
               ),
               errorWidget: (context, url, error) => Icon(Icons.error),
             ),
-            borderRadius: BorderRadius.circular(borderRadius ?? 10),
+            borderRadius: BorderRadius.circular(borderRadius),
           );
   }
 }

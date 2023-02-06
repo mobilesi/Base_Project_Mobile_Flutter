@@ -44,9 +44,9 @@ class _SplashState extends State<SplashScreen> {
     String token = await SharedPreferenceUtil.getToken();
     await Future.delayed(Duration(seconds: 2));
     if (token.isEmpty) {
-      Navigator.pushReplacementNamed(context, Routes.loginScreen);
+      Navigator.pushNamedAndRemoveUntil(context, Routes.loginScreen, (route) => false);
     } else {
-      Navigator.pushReplacementNamed(context, Routes.mainScreen);
+      Navigator.pushNamedAndRemoveUntil(context, Routes.mainScreen, (route) => false);
     }
   }
 }

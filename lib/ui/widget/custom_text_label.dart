@@ -1,10 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/localizations.dart';
+import 'package:flutter_template/ui/widget/widget.dart';
 import 'package:flutter_template/utils/common.dart';
-import 'package:scale_size/scale_size.dart';
-
-import 'locale_widget.dart';
 
 class CustomTextLabel extends StatelessWidget {
   final dynamic title;
@@ -35,13 +32,13 @@ class CustomTextLabel extends StatelessWidget {
         return Text(
           (formatCurrency
               ? Common.formatPrice(title ?? "")
-              : locale?.getText(title?.toString() ?? "").trim() ?? title?.toString()?.trim()) ??
+              : locale?.getText(title?.toString() ?? "").trim() ?? title?.toString().trim()) ??
               "",
           textAlign: textAlign,
           overflow: TextOverflow.ellipsis,
           maxLines: maxLines,
           style: TextStyle(
-              height: fontHeight ?? 22.27 / 19, fontSize: fontSize ?? 14.sw, fontWeight: fontWeight, color: color),
+              height: fontHeight ?? 22.27 / 19, fontSize: fontSize ?? 14, fontWeight: fontWeight, color: color),
         );
       },
     );

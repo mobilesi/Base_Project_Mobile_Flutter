@@ -7,7 +7,6 @@ import 'package:flutter_template/constants.dart';
 import 'package:flutter_template/localizations.dart';
 import 'package:flutter_template/res/colors.dart';
 import 'package:flutter_template/utils/common.dart';
-import 'package:scale_size/scale_size.dart';
 
 import 'custom_text_label.dart';
 
@@ -149,11 +148,11 @@ class TextFieldState extends State<CustomTextInput> {
         children: [
           (widget.isElevation == false)
               ? Container(
-            padding: EdgeInsets.only(bottom: 5.sw),
+            padding: EdgeInsets.only(bottom: 5),
             child: CustomTextLabel(
               widget.title,
               color: AppColors.ff828282,
-              fontSize: 14.sw,
+              fontSize: 14,
               fontWeight: FontWeight.w400,
             ),
           )
@@ -176,7 +175,7 @@ class TextFieldState extends State<CustomTextInput> {
                   textAlignVertical: TextAlignVertical.center,
                   style: TextStyle(
                       color: widget.colorText,
-                      fontSize: widget.fontSize ?? 15.sw,
+                      fontSize: widget.fontSize ?? 15,
                       fontWeight: widget.fontWeight ?? FontWeight.w400),
                   decoration: InputDecoration(
                       counterText: "",
@@ -196,14 +195,14 @@ class TextFieldState extends State<CustomTextInput> {
                           },
                           icon: Icon(
                             Icons.calendar_today,
-                            size: 15.sw,
+                            size: 15,
                           ))
                           : (widget.onTapTextField != null)
                           ? IconButton(
                           onPressed: () {},
                           icon: Icon(
                             Icons.arrow_forward_ios_outlined,
-                            size: 15.sw,
+                            size: 15,
                           ))
                           : widget.suffixIcon,
                       prefixIcon: widget.prefixIcon,
@@ -232,12 +231,12 @@ class TextFieldState extends State<CustomTextInput> {
                           : const UnderlineInputBorder(
                         borderSide: BorderSide(color: AppColors.base_color_border_textfield, width: 1),
                       ),
-                      hintStyle: TextStyle(color: AppColors.ffBDBDBD, fontWeight: FontWeight.w400, fontSize: 15.sw),
+                      hintStyle: TextStyle(color: AppColors.ffBDBDBD, fontWeight: FontWeight.w400, fontSize: 15),
                       hintText: Language.of(context)?.getText.call(widget.hintText),
                       isDense: true,
                       // and add this line
                       contentPadding: widget.padding ??
-                          EdgeInsets.symmetric(horizontal: widget.hideUnderline == false ? 0 : 10.sw, vertical: 10.sw)),
+                          EdgeInsets.symmetric(horizontal: widget.hideUnderline == false ? 0 : 10, vertical: 10)),
                   controller: textController,
                   obscureText: widget.obscureText == null  ? _showText : widget.obscureText!,
                   keyboardType: widget.formatCurrency ? TextInputType.number : widget.keyboardType,
@@ -290,7 +289,7 @@ class TextFieldState extends State<CustomTextInput> {
           ),
           errorText.isNotEmpty
               ? Container(
-            margin: EdgeInsets.only(top: 6.sw),
+            margin: EdgeInsets.only(top: 6),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -304,7 +303,7 @@ class TextFieldState extends State<CustomTextInput> {
                   child: CustomTextLabel(
                     errorText,
                     color: Colors.red,
-                    fontSize: 12.sw,
+                    fontSize: 12,
                   ),
                 ),
               ],

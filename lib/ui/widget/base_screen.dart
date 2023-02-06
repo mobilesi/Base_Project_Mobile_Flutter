@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_template/res/resources.dart';
 import 'package:flutter_template/ui/widget/custom_text_label.dart';
 import 'package:scale_size/scale_size.dart';
 
 class BaseScreen extends StatelessWidget {
-  static double toolbarHeight = 50.sw;
+  static double toolbarHeight = 50;
 
   // body của màn hình
   final Widget? body;
@@ -102,7 +101,7 @@ class BaseScreen extends StatelessWidget {
         this.title?.toString(),
         maxLines: 2,
         fontWeight: FontWeight.w700,
-        fontSize: 20.sw,
+        fontSize: 20,
         textAlign: TextAlign.center,
         color: colorTitle,
       );
@@ -120,12 +119,12 @@ class BaseScreen extends StatelessWidget {
                 onBackPress?.call();
               },
               child: Container(
-                width: 50.sw,
+                width: 50,
                 alignment: Alignment.center,
                 child: Image.asset(
                   AppImages.IC_BACK,
-                  width: 22.sw,
-                  height: 22.sw,
+                  width: 22,
+                  height: 22,
                   fit: BoxFit.contain,
                 ),
               ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/res/resources.dart';
 import 'package:flutter_template/ui/widget/widget.dart';
-import 'package:scale_size/scale_size.dart';
 
 class BaseButton extends StatelessWidget {
   final String? title;
@@ -47,7 +46,7 @@ class BaseButton extends StatelessWidget {
               gradient: backgroundColor == null ? AppColors.base_color_gradient : null,
               color: backgroundColor ?? Colors.white,
               border: Border.all(color: borderColor!),
-              borderRadius: BorderRadius.circular(borderRadius ?? 10.sw)),
+              borderRadius: BorderRadius.circular(borderRadius ?? 10)),
       child: Material(
         child: InkWell(
           borderRadius: borderRadiusInWell,
@@ -58,7 +57,7 @@ class BaseButton extends StatelessWidget {
           child: Container(
               width: width,
               height: height,
-              padding: padding ?? EdgeInsets.symmetric(vertical: 12.sw, horizontal: 10.sw),
+              padding: padding ?? EdgeInsets.symmetric(vertical: 12, horizontal: 10),
               child: renderChild()),
         ),
         color: Colors.transparent,
@@ -71,7 +70,7 @@ class BaseButton extends StatelessWidget {
       return CustomTextLabel(
         title,
         fontWeight: FontWeight.w600,
-        fontSize: 16.sw,
+        fontSize: 16,
         color: AppColors.white,
       );
     }
