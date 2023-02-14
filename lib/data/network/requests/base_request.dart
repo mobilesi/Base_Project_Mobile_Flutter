@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
+
 class BaseParamRequest {
   static Map<String, dynamic> request(map) {
     if (map == null) {
@@ -14,7 +16,7 @@ class BaseParamRequest {
     }
     map["partner"] = partner;
     map["signature"] = "";
-    print("==Network ParamRequest =====${json.encode(map)}");
+    debugPrint("==Network ParamRequest =====${json.encode(map)}");
     return map;
   }
 }
