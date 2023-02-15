@@ -1,7 +1,8 @@
 {
   "st_app_name": "tên app",
   "error": {
-    "common": "Đã có lỗi xảy ra. Vui lòng thử lại sau"
+    "common": "Đã có lỗi xảy ra. Vui lòng thử lại sau",
+    "connection":"Lỗi kết nối mạng"
   },
   "login": {
     "title_login": "Đăng nhập"

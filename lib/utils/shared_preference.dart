@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter_template/data/models/models.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SPrefCache {
@@ -36,14 +37,14 @@ class SharedPreferenceUtil {
     await prefs.setString(SPrefCache.PREF_KEY_USER_INFO, json.encode(user));
   }
 
-//  static Future<LoginResponse> getUserInfo() async {
-//    SharedPreferences prefs = await SharedPreferences.getInstance();
-//    var data = prefs.getString(SPrefCache.PREF_KEY_USER_INFO);
-//    if (data == null) {
-//      return null;
-//    }
-//    return LoginResponse.fromMap(json.decode(data));
-//  }
+  static Future<UserModel?> getUserInfo() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var data = prefs.getString(SPrefCache.PREF_KEY_USER_INFO);
+    if (data == null) {
+      return null;
+    }
+    return UserModel.fromJson(json.decode(data));
+  }
 
   static Future clearData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

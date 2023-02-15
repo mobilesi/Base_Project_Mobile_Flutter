@@ -36,26 +36,30 @@ class BaseScreen extends StatelessWidget {
   final Color colorTitle;
   final bool hideAppBar;
 
-  const BaseScreen(
-      {Key? key,
-      this.body,
-      this.title = "",
-      this.customAppBar,
-      this.onBackPress,
-      this.rightWidgets,
-      this.hiddenIconBack = false,
-      this.colorTitle = AppColors.white,
-      this.loadingWidget,
-      this.hideAppBar = false,
-      this.messageNotify,
-      this.floatingButton})
-      : super(key: key);
+  // base bg color
+  final Color colorBg;
+
+  const BaseScreen({
+    Key? key,
+    this.body,
+    this.title = "",
+    this.customAppBar,
+    this.onBackPress,
+    this.rightWidgets,
+    this.hiddenIconBack = false,
+    this.colorTitle = AppColors.white,
+    this.loadingWidget,
+    this.hideAppBar = false,
+    this.messageNotify,
+    this.floatingButton,
+    this.colorBg = AppColors.white,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final scaffold = Scaffold(
         appBar: hideAppBar ? null : (customAppBar == null ? baseAppBar(context) : customAppBar),
-        backgroundColor: Colors.transparent,
+        backgroundColor: colorBg,
         body: GestureDetector(
           behavior: HitTestBehavior.translucent,
           onTap: () {

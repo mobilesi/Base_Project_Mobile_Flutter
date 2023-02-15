@@ -26,8 +26,8 @@ class CustomSnackBar<T extends Cubit<BaseState>> extends StatelessWidget {
               content: CustomTextLabel(
                 mess,
                 fontSize: fontSize ?? 14,
-                color: textColor ?? AppColors.white,
-                fontWeight: FontWeight.w600,
+                color: textColor ?? AppColors.gray,
+                fontWeight: FontWeight.w400,
               ),
               behavior: SnackBarBehavior.floating,
               margin: EdgeInsets.all(20),

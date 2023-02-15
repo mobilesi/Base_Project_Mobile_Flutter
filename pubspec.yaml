@@ -40,6 +40,7 @@ dependencies:
   share: ^2.0.4
   cached_network_image: ^3.2.3
   scale_size: 0.0.6
+  get_it: ^7.2.0
 
 dev_dependencies:
   flutter_test:
