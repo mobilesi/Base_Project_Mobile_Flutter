@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'base_bloc/base_state.dart';
 
 const int DEFAULT_PAGE_SIZE = 12;

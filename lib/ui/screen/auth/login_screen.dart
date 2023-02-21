@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/blocs/base_bloc/base_state.dart';
 import 'package:flutter_template/blocs/cubit.dart';
+import 'package:flutter_template/domain/repositories/repositories.dart';
 import 'package:flutter_template/injection_container.dart';
 import 'package:flutter_template/routes.dart';
 import 'package:flutter_template/ui/widget/widget.dart';
@@ -11,7 +12,8 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<LoginCubit>(create: (_) => LoginCubit(repositoryImpl: getIt.get()), child: LoginBody());
+    return BlocProvider<LoginCubit>(
+        create: (_) => LoginCubit(repositoryImpl: getIt.get<AuthRepository>()), child: LoginBody());
   }
 }
 
@@ -39,6 +41,11 @@ class _LoginScreenState extends State<LoginBody> {
               hideUnderline: true,
               hintText: "Nhập tên đăng nhập",
               title: "Tên đăng nhập",
+              validator: (String value) {
+                if (value.isEmpty) {
+                  return "Loi";
+                }
+              },
             ),
           ),
           BlocListener<LoginCubit, BaseState>(

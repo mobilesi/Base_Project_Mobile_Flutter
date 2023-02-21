@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_template/data/network/network.dart';
+import 'package:flutter_template/domain/network/network.dart';
 import 'package:flutter_template/utils/navigator.dart';
 import 'package:flutter_template/utils/shared_preference.dart';
 

@@ -29,7 +29,7 @@ class NavigationService {
 
   showDialogTokenExpired() {
     BuildContext? context = navigatorKey.currentState?.overlay?.context;
-    if(context == null){
+    if (context == null) {
       return;
     }
     String? message = Language.of(context)?.getText.call("token_expired_message") ?? "";

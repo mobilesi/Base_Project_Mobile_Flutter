@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/ui/screen/screen.dart';
 import 'package:page_transition/page_transition.dart';
 
-
 class Routes {
   Routes._();
 

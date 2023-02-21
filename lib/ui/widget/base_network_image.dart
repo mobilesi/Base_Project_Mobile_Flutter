@@ -40,7 +40,7 @@ class BaseNetworkImage extends StatelessWidget {
               fit: BoxFit.cover,
               imageUrl: url!,
               placeholder: (context, url) => Center(
-                child:  BaseProgressIndicator(size: loadingSize ?? 10),
+                child: BaseProgressIndicator(size: loadingSize ?? 10),
               ),
               errorWidget: (context, url, error) => Icon(Icons.error),
             ),

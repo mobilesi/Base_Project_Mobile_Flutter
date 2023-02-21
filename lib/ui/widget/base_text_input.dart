@@ -2,11 +2,11 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 import 'package:flutter_template/constants.dart';
 import 'package:flutter_template/localizations.dart';
 import 'package:flutter_template/res/colors.dart';
 import 'package:flutter_template/utils/common.dart';
+import 'package:intl/intl.dart';
 
 import 'custom_text_label.dart';
 
@@ -59,48 +59,48 @@ class CustomTextInput extends StatefulWidget {
 
   CustomTextInput(
       {Key? key,
-        this.getTextFieldValue,
-        this.onSubmitted,
-        this.keyboardType = TextInputType.text,
-        this.title = "",
-        this.maxLines = 1,
-        this.textInputAction,
-        this.minLines = 1,
-        this.obscureText,
-        this.changeFocus,
-        this.hintText = "",
-        this.margin,
-        this.padding,
-        this.initData,
-        this.titleStyle,
-        this.width,
-        this.heightTextInput,
-        this.textController,
-        this.fontWeight,
-        this.align,
-        this.enabled = true,
-        this.hideUnderline = false,
-        this.colorText = Colors.black,
-        this.maxLength = TextField.noMaxLength,
-        this.formatPercent = false,
-        this.formatDecimal = false,
-        this.enableBorder = false,
-        this.suffixIcon,
-        this.prefixIcon,
-        this.isPasswordTF = false,
-        this.isDateTimeTF = false,
-        this.isRequired = false,
-        this.isElevation = false,
-        this.colorBgTextField = AppColors.white,
-        this.colorBgTextFieldDisable = AppColors.disable,
-        this.formatCurrency = false,
-        this.formatNumber = false,
-        this.validator,
-        this.onTapTextField,
-        this.autoFocus = false,
-        this.firstDate,
-        this.fontSize,
-        this.lastDate})
+      this.getTextFieldValue,
+      this.onSubmitted,
+      this.keyboardType = TextInputType.text,
+      this.title = "",
+      this.maxLines = 1,
+      this.textInputAction,
+      this.minLines = 1,
+      this.obscureText,
+      this.changeFocus,
+      this.hintText = "",
+      this.margin,
+      this.padding,
+      this.initData,
+      this.titleStyle,
+      this.width,
+      this.heightTextInput,
+      this.textController,
+      this.fontWeight,
+      this.align,
+      this.enabled = true,
+      this.hideUnderline = false,
+      this.colorText = Colors.black,
+      this.maxLength = TextField.noMaxLength,
+      this.formatPercent = false,
+      this.formatDecimal = false,
+      this.enableBorder = false,
+      this.suffixIcon,
+      this.prefixIcon,
+      this.isPasswordTF = false,
+      this.isDateTimeTF = false,
+      this.isRequired = false,
+      this.isElevation = false,
+      this.colorBgTextField = AppColors.white,
+      this.colorBgTextFieldDisable = AppColors.disable,
+      this.formatCurrency = false,
+      this.formatNumber = false,
+      this.validator,
+      this.onTapTextField,
+      this.autoFocus = false,
+      this.firstDate,
+      this.fontSize,
+      this.lastDate})
       : super(key: key);
 
   @override
@@ -126,7 +126,7 @@ class TextFieldState extends State<CustomTextInput> {
     if (widget.initData != null) {
       WidgetsBinding.instance?.addPostFrameCallback((_) {
         textController.text =
-        widget.formatCurrency ? Common.formatPrice(widget.initData, showPrefix: false) : widget.initData.toString();
+            widget.formatCurrency ? Common.formatPrice(widget.initData, showPrefix: false) : widget.initData.toString();
       });
     }
     if (widget.formatNumber || widget.formatCurrency || widget.formatPercent) {
@@ -148,14 +148,14 @@ class TextFieldState extends State<CustomTextInput> {
         children: [
           (widget.isElevation == false)
               ? Container(
-            padding: EdgeInsets.only(bottom: 5),
-            child: CustomTextLabel(
-              widget.title,
-              color: AppColors.ff828282,
-              fontSize: 14,
-              fontWeight: FontWeight.w400,
-            ),
-          )
+                  padding: EdgeInsets.only(bottom: 5),
+                  child: CustomTextLabel(
+                    widget.title,
+                    color: AppColors.ff828282,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
+                )
               : Container(),
           Container(
             height: widget.heightTextInput,
@@ -181,30 +181,30 @@ class TextFieldState extends State<CustomTextInput> {
                       counterText: "",
                       suffixIcon: (widget.isPasswordTF == true)
                           ? IconButton(
-                        icon: Icon(!_showText ? Icons.visibility : Icons.visibility_off, color: Colors.grey),
-                        onPressed: () {
-                          setState(() {
-                            _showText = !_showText;
-                          });
-                        },
-                      )
+                              icon: Icon(!_showText ? Icons.visibility : Icons.visibility_off, color: Colors.grey),
+                              onPressed: () {
+                                setState(() {
+                                  _showText = !_showText;
+                                });
+                              },
+                            )
                           : (widget.isDateTimeTF == true)
-                          ? IconButton(
-                          onPressed: () {
-                            chooseDay(context);
-                          },
-                          icon: Icon(
-                            Icons.calendar_today,
-                            size: 15,
-                          ))
-                          : (widget.onTapTextField != null)
-                          ? IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.arrow_forward_ios_outlined,
-                            size: 15,
-                          ))
-                          : widget.suffixIcon,
+                              ? IconButton(
+                                  onPressed: () {
+                                    chooseDay(context);
+                                  },
+                                  icon: Icon(
+                                    Icons.calendar_today,
+                                    size: 15,
+                                  ))
+                              : (widget.onTapTextField != null)
+                                  ? IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.arrow_forward_ios_outlined,
+                                        size: 15,
+                                      ))
+                                  : widget.suffixIcon,
                       prefixIcon: widget.prefixIcon,
                       focusColor: Colors.white,
                       border: InputBorder.none,
@@ -212,25 +212,25 @@ class TextFieldState extends State<CustomTextInput> {
                       prefixIconConstraints: BoxConstraints(maxHeight: 35),
                       disabledBorder: widget.hideUnderline
                           ? (widget.enableBorder
-                          ? const OutlineInputBorder(borderSide: BorderSide(color: AppColors.border))
-                          : InputBorder.none)
+                              ? const OutlineInputBorder(borderSide: BorderSide(color: AppColors.border))
+                              : InputBorder.none)
                           : const UnderlineInputBorder(
-                        borderSide: BorderSide(color: AppColors.base_color_border_textfield, width: 1),
-                      ),
+                              borderSide: BorderSide(color: AppColors.base_color_border_textfield, width: 1),
+                            ),
                       focusedBorder: widget.hideUnderline
                           ? (widget.enableBorder
-                          ? OutlineInputBorder(borderSide: BorderSide(color: AppColors.border))
-                          : InputBorder.none)
+                              ? OutlineInputBorder(borderSide: BorderSide(color: AppColors.border))
+                              : InputBorder.none)
                           : const UnderlineInputBorder(
-                        borderSide: BorderSide(color: AppColors.base_color, width: 1),
-                      ),
+                              borderSide: BorderSide(color: AppColors.base_color, width: 1),
+                            ),
                       enabledBorder: widget.hideUnderline
                           ? (widget.enableBorder
-                          ? OutlineInputBorder(borderSide: BorderSide(color: AppColors.border))
-                          : InputBorder.none)
+                              ? OutlineInputBorder(borderSide: BorderSide(color: AppColors.border))
+                              : InputBorder.none)
                           : const UnderlineInputBorder(
-                        borderSide: BorderSide(color: AppColors.base_color_border_textfield, width: 1),
-                      ),
+                              borderSide: BorderSide(color: AppColors.base_color_border_textfield, width: 1),
+                            ),
                       hintStyle: TextStyle(color: AppColors.ffBDBDBD, fontWeight: FontWeight.w400, fontSize: 15),
                       hintText: Language.of(context)?.getText.call(widget.hintText),
                       isDense: true,
@@ -238,7 +238,7 @@ class TextFieldState extends State<CustomTextInput> {
                       contentPadding: widget.padding ??
                           EdgeInsets.symmetric(horizontal: widget.hideUnderline == false ? 0 : 10, vertical: 10)),
                   controller: textController,
-                  obscureText: widget.obscureText == null  ? _showText : widget.obscureText!,
+                  obscureText: widget.obscureText == null ? _showText : widget.obscureText!,
                   keyboardType: widget.formatCurrency ? TextInputType.number : widget.keyboardType,
                   textInputAction: widget.textInputAction,
                   onSubmitted: widget.onSubmitted,
@@ -272,43 +272,43 @@ class TextFieldState extends State<CustomTextInput> {
                   ),
                 widget.onTapTextField != null
                     ? Positioned(
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  child: InkWell(
-                    onTap: () {
-                      if (this.widget.enabled) widget.onTapTextField?.call();
-                    },
-                    child: Container(),
-                  ),
-                )
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        child: InkWell(
+                          onTap: () {
+                            if (this.widget.enabled) widget.onTapTextField?.call();
+                          },
+                          child: Container(),
+                        ),
+                      )
                     : Container(),
               ],
             ),
           ),
           errorText.isNotEmpty
               ? Container(
-            margin: EdgeInsets.only(top: 6),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(
-                  Icons.error,
-                  size: 13,
-                  color: Colors.red,
-                ),
-                SizedBox(width: 2),
-                Expanded(
-                  child: CustomTextLabel(
-                    errorText,
-                    color: Colors.red,
-                    fontSize: 12,
+                  margin: EdgeInsets.only(top: 6),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(
+                        Icons.error,
+                        size: 13,
+                        color: Colors.red,
+                      ),
+                      SizedBox(width: 2),
+                      Expanded(
+                        child: CustomTextLabel(
+                          errorText,
+                          color: Colors.red,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-          )
+                )
               : Container()
         ],
       ),
@@ -331,7 +331,7 @@ class TextFieldState extends State<CustomTextInput> {
     }
 
     var newDate =
-    await showDatePicker(context: context, initialDate: initDate, firstDate: firstDate, lastDate: lastDate);
+        await showDatePicker(context: context, initialDate: initDate, firstDate: firstDate, lastDate: lastDate);
     if (newDate == null) return;
     textController.text = getText(newDate);
     widget.getTextFieldValue?.call(value);

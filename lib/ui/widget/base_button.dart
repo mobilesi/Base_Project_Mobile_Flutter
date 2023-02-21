@@ -18,18 +18,18 @@ class BaseButton extends StatelessWidget {
 
   const BaseButton(
       {this.child,
-        Key? key,
-        this.decoration,
-        this.onTap,
-        this.backgroundColor,
-        this.borderRadius,
-        this.borderColor = Colors.transparent,
-        this.margin,
-        this.padding,
-        this.alignment,
-        this.width,
-        this.height,
-        this.title})
+      Key? key,
+      this.decoration,
+      this.onTap,
+      this.backgroundColor,
+      this.borderRadius,
+      this.borderColor = Colors.transparent,
+      this.margin,
+      this.padding,
+      this.alignment,
+      this.width,
+      this.height,
+      this.title})
       : super(key: key);
 
   @override

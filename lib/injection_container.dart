@@ -1,7 +1,7 @@
 import 'package:flutter_template/blocs/cubit.dart';
-import 'package:flutter_template/data/network/datasources/datasource.dart';
-import 'package:flutter_template/data/network/network.dart';
-import 'package:flutter_template/data/network/repositories/repositories.dart';
+import 'package:flutter_template/domain/data/datasources/datasource.dart';
+import 'package:flutter_template/domain/network/network.dart';
+import 'package:flutter_template/domain/repositories/repositories.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -22,13 +22,13 @@ Future<void> init({GetIt? getIt}) async {
 
 void registerCubit(GetIt getIt) {
   getIt.registerLazySingleton(
-    () => UserInfoCubit(repositoryImpl: getIt.get<UserRepositoryImpl>()),
+    () => UserInfoCubit(repository: getIt.get<UserRepositoryImpl>()),
   );
 }
 
 void registerRepositories(GetIt getIt) {
   getIt.registerLazySingleton(
-    () => AuthRepositoryImpl(remoteDataSource: getIt.get()),
+    () => AuthRepository(remoteDataSource: getIt.get()),
   );
   getIt.registerLazySingleton(
     () => UserRepositoryImpl(
@@ -39,9 +39,9 @@ void registerRepositories(GetIt getIt) {
 }
 
 void registerDataSource(GetIt getIt) {
-  getIt.registerLazySingleton(() => AuthRemoteDataSourceImpl(network: getIt.get()));
-  getIt.registerLazySingleton(() => UserLocalDataSourceImpl());
-  getIt.registerLazySingleton(() => UserRemoteDataSourceImpl(network: getIt.get()));
+  getIt.registerLazySingleton(() => AuthRemoteDataSource(network: getIt.get()));
+  getIt.registerLazySingleton(() => UserLocalDataSource());
+  getIt.registerLazySingleton(() => UserRemoteDataSource(network: getIt.get()));
 }
 
 void registerNetwork(GetIt getIt) {

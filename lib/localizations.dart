@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'constants.dart';
 import 'utils/shared_preference.dart';
 
 Map<String, dynamic>? language;
@@ -33,7 +33,7 @@ class Language {
       String keyResult = listKey[listKey.length - 1];
       return valueNest[keyResult] ?? key;
     } catch (e) {
-      return key ;
+      return key;
     }
   }
 

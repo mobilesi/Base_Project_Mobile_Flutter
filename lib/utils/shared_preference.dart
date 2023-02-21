@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_template/data/models/models.dart';
+import 'package:flutter_template/domain/data/models/models.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SPrefCache {

@@ -1,5 +1,5 @@
-import 'package:flutter_template/data/models/models.dart';
-import 'package:flutter_template/data/network/datasources/datasource.dart';
+import 'package:flutter_template/domain/data/datasources/datasource.dart';
+import 'package:flutter_template/domain/data/models/models.dart';
 
 abstract class UserRepository {
   final UserLocalDataSource userLocalDataSource;
@@ -12,7 +12,7 @@ abstract class UserRepository {
 
 class UserRepositoryImpl extends UserRepository {
   UserRepositoryImpl(
-      {required UserLocalDataSourceImpl userLocalDataSource, required UserRemoteDataSourceImpl userRemoteDataSource})
+      {required UserLocalDataSource userLocalDataSource, required UserRemoteDataSource userRemoteDataSource})
       : super(userLocalDataSource, userRemoteDataSource);
 
   @override

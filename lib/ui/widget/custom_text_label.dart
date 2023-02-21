@@ -15,13 +15,13 @@ class CustomTextLabel extends StatelessWidget {
 
   const CustomTextLabel(this.title,
       {Key? key,
-        this.fontSize,
-        this.fontWeight = FontWeight.normal,
-        this.color = Colors.black,
-        this.textAlign = TextAlign.start,
-        this.maxLines = 50,
-        this.fontHeight,
-        this.formatCurrency = false})
+      this.fontSize,
+      this.fontWeight = FontWeight.normal,
+      this.color = Colors.black,
+      this.textAlign = TextAlign.start,
+      this.maxLines = 50,
+      this.fontHeight,
+      this.formatCurrency = false})
       : super(key: key);
 
   @override
@@ -31,8 +31,8 @@ class CustomTextLabel extends StatelessWidget {
       builder: (Language? locale) {
         return Text(
           (formatCurrency
-              ? Common.formatPrice(title ?? "")
-              : locale?.getText(title?.toString() ?? "").trim() ?? title?.toString().trim()) ??
+                  ? Common.formatPrice(title ?? "")
+                  : locale?.getText(title?.toString() ?? "").trim() ?? title?.toString().trim()) ??
               "",
           textAlign: textAlign,
           overflow: TextOverflow.ellipsis,

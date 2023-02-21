@@ -1,4 +1,4 @@
-import 'package:flutter_template/data/entities/entities.dart';
+import 'package:flutter_template/domain/data/entities/entities.dart';
 
 class UserModel extends UserEntity {
   UserModel.fromJson(Map<String, dynamic> json) : super.fromJson(json);
