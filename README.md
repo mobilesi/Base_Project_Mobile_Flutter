@@ -1,4 +1,4 @@
-# flutter_template
+# Base Project Mobile Flutter
 
 ### A new Flutter flutter_template application.
 
